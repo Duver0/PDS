@@ -18,6 +18,7 @@ import java.util.List;
 public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectRepository repository;
+
     @Autowired
     private ProjectTaskRepository repository2;
 
@@ -31,9 +32,7 @@ public class ProjectServiceImpl implements ProjectService {
         return repository.save(project);
     }
 
-    /*public List<Project> findByIdTasks(Long id)  {
-        return repository.findAllById(Collections.singleton(id));
-    }*/
+
     @Override
     public List<ProjectTask> findByIdeTasks(String id)  {
         List<Project> p=findAll();

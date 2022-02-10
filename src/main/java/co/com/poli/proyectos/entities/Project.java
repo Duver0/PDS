@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Objects;
 
 
 @Getter
@@ -16,17 +17,19 @@ import java.util.Date;
 @Entity
 @Table(name="project")
 public class Project extends EntityBase{
-    @Column(name="project_name",unique=true)
-    @NotBlank(message = "Name may not be blank")
-    private String projectName;
+
+    @Id
+    @Column(name="id",unique=true)
+    @NotBlank(message = "El campo no puede estar vacio")
+    private Long id;
 
     @Column(name="project_identifier",unique=true, updatable=false)
-    @NotBlank(message = "Name may not be blank")
-    @Size(min = 5, max = 7, message = "Name must be between 5 and 7 characters long")
+    @NotBlank(message = "El campo no puede estar vacio")
+    @Size(min = 5, max = 7, message = "Debe ser entre 5 y 7 caracteres")
     private String ProjectIdentifier;
 
     @Column(name="description")
-    @NotBlank(message = "Name may not be blank")
+    @NotBlank(message = "El campo no puede estar vacio")
     private String description;
 
     @Column(name="start_date")
@@ -42,11 +45,15 @@ public class Project extends EntityBase{
 
     @Override
     public boolean equals(Object o) {
-        return super.equals(o);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Project project = (Project) o;
+        return Objects.equals(id, project.id);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(super.hashCode(), id);
     }
 }

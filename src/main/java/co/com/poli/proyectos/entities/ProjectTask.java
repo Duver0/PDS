@@ -19,7 +19,7 @@ import java.util.Date;
 public class ProjectTask extends EntityBase {
 
     @Column(name="name")
-    @NotBlank(message = "Name may not be blank")
+    @NotBlank(message = "El campo no puede estar vacío")
     private String name;
 
     @Column(name="summary")
@@ -36,12 +36,12 @@ public class ProjectTask extends EntityBase {
     private Status status;
 
     @Column(name="priority")
-    @Size(min = 1, max = 5, message = "Debe ser entre 1 o 5 caracteres")
+    @Size(min = 1, max = 5, message = "Debe ser entre 1 y 5 caracteres")
     private int priority;
 
     @Column(name="hours")
     @PositiveOrZero(message = "Debe ser un valor mayor a cero")
-    @Size(min = 1, max = 8, message = "Debe ser entre 1 o 8 caracteres")
+    @Size(min = 1, max = 8, message = "Debe ser entre 1 y 8 caracteres")
     private Double hours;
 
     @Column(name="start_date")
